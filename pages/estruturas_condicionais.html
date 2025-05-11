@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estruturas Condicionais em C - DevAprender C</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Dev</span>Aprender C</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Início</a></li>
+                    <li><a href="/pages/logica_programacao.html">Lógica</a></li>
+                    <li><a href="/pages/introducao_c.html">Intro C</a></li>
+                    <li><a href="/pages/tipos_dados_variaveis.html">Tipos/Variáveis</a></li>
+                    <li><a href="/pages/operadores_expressoes.html">Operadores</a></li>
+                    <li class="current"><a href="/pages/estruturas_condicionais.html">Condicionais</a></li>
+                    <li><a href="/pages/estruturas_repeticao.html">Repetição</a></li>
+                    <li><a href="/pages/sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <h1>5. Estruturas Condicionais</h1>
+        <p>Estruturas condicionais permitem que um programa tome decisões e execute diferentes blocos de código com base
+            em certas condições serem verdadeiras ou falsas.</p>
+
+        <section id="if-else-if-else">
+            <h2><code>if</code>, <code>else if</code>, <code>else</code></h2>
+            <p>A estrutura <code>if</code> executa um bloco de código se uma condição for verdadeira. O
+                <code>else if</code> permite testar múltiplas condições em sequência, e o <code>else</code> executa um
+                bloco se nenhuma das condições anteriores (<code>if</code> ou <code>else if</code>) for verdadeira.</p>
+            <h3>Sintaxe:</h3>
+            <pre><code class="language-c">
+if (condicao1) {
+    // Bloco de código 1: executado se condicao1 for verdadeira
+} else if (condicao2) {
+    // Bloco de código 2: executado se condicao1 for falsa E condicao2 for verdadeira
+} else if (condicaoN) {
+    // Bloco de código N: ...
+} else {
+    // Bloco de código ELSE: executado se todas as condições anteriores forem falsas
+}
+            </code></pre>
+            <p><strong>Observações:</strong></p>
+            <ul>
+                <li>O bloco <code>else if</code> e o bloco <code>else</code> são opcionais.</li>
+                <li>Você pode ter múltiplos blocos <code>else if</code>.</li>
+                <li>Apenas um bloco de código (o primeiro cuja condição for verdadeira, ou o bloco <code>else</code>)
+                    será executado.</li>
+            </ul>
+            <h3>Exemplo: Classificação da Média Escolar</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    float media;
+    printf("Digite a media do aluno: ");
+    scanf("%f", &media);
+
+    if (media >= 9.0f && media <= 10.0f) {
+        printf("Conceito: A (Excelente)\n");
+    } else if (media >= 7.0f && media < 9.0f) {
+        printf("Conceito: B (Bom)\n");
+    } else if (media >= 5.0f && media < 7.0f) {
+        printf("Conceito: C (Regular - Recuperacao)\n");
+    } else if (media >= 0.0f && media < 5.0f) {
+        printf("Conceito: D (Insuficiente - Reprovado)\n");
+    } else {
+        printf("Media invalida!\n");
+    }
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="switch-case">
+            <h2><code>switch</code> e <code>case</code></h2>
+            <p>A estrutura <code>switch</code> é uma alternativa ao uso de múltiplos <code>if-else if</code> quando se
+                deseja testar uma variável contra uma lista de valores constantes (inteiros ou caracteres).</p>
+            <h3>Sintaxe:</h3>
+            <pre><code class="language-c">
+switch (expressao_de_controle) {
+    case valor1:
+        // Bloco de código para valor1
+        break; // Importante para sair do switch
+    case valor2:
+        // Bloco de código para valor2
+        break;
+    case valorN:
+        // Bloco de código para valorN
+        break;
+    default: // Opcional
+        // Bloco de código executado se nenhum case corresponder
+        // Não precisa de break aqui, pois é o último
+}
+            </code></pre>
+            <ul>
+                <li>A <code>expressao_de_controle</code> deve resultar em um valor inteiro ou caractere.</li>
+                <li>Cada <code>case</code> define um valor constante a ser comparado.</li>
+                <li>O <code>break</code> é crucial. Sem ele, a execução "cai" para o próximo <code>case</code>
+                    (fall-through), o que raramente é desejado.</li>
+                <li>O <code>default</code> é opcional e é executado se nenhum <code>case</code> corresponder ao valor da
+                    expressão.</li>
+            </ul>
+            <h3>Exemplo: Dia da Semana</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int dia;
+    printf("Digite um numero de 1 a 7 para o dia da semana: ");
+    scanf("%d", &dia);
+
+    switch (dia) {
+        case 1:
+            printf("Domingo\n");
+            break;
+        case 2:
+            printf("Segunda-feira\n");
+            break;
+        case 3:
+            printf("Terca-feira\n");
+            break;
+        case 4:
+            printf("Quarta-feira\n");
+            break;
+        case 5:
+            printf("Quinta-feira\n");
+            break;
+        case 6:
+            printf("Sexta-feira\n");
+            break;
+        case 7:
+            printf("Sabado\n");
+            break;
+        default:
+            printf("Numero invalido para dia da semana!\n");
+    }
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="uso-break-default">
+            <h2>Uso do <code>break</code> e <code>default</code></h2>
+            <p><strong><code>break</code> no <code>switch</code>:</strong> Como visto, o <code>break</code> é usado para
+                terminar a execução de um bloco <code>case</code> dentro de um <code>switch</code> e sair da estrutura
+                <code>switch</code>. Se omitido, ocorre o "fall-through", onde o código do próximo <code>case</code> (e
+                subsequentes, até encontrar um <code>break</code> ou o fim do <code>switch</code>) será executado,
+                independentemente da condição do <code>case</code>.</p>
+            <p><strong><code>default</code> no <code>switch</code>:</strong> O rótulo <code>default</code> especifica um
+                bloco de código a ser executado se nenhum dos valores dos rótulos <code>case</code> corresponder ao
+                valor da expressão de controle do <code>switch</code>. É semelhante ao <code>else</code> final em uma
+                cadeia <code>if-else if-else</code>. Seu uso é opcional, mas recomendado para tratar situações
+                inesperadas.</p>
+        </section>
+
+        <section id="exemplos-codigos-condicionais">
+            <h2>Exemplos de Códigos (Atividades Resolvidas)</h2>
+            <div class="exercicio">
+                <h3>Atividade 1: Calculadora Simples com Switch</h3>
+                <p>Crie uma calculadora que leia dois números e um operador (<code>+</code>, <code>-</code>,
+                    <code>*</code>, <code>/</code>). Use <code>switch</code> para realizar a operação.</p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-cond-ex1')">Mostrar/Ocultar
+                    Solução</button>
+                <div id="solucao-cond-ex1" class="solucao">
+                    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    float num1, num2, resultado;
+    char operador;
+
+    printf("Digite o primeiro numero: ");
+    scanf("%f", &num1);
+    printf("Digite o operador (+, -, *, /): ");
+    scanf(" %c", &operador); // Espaço antes de %c para consumir newline anterior
+    printf("Digite o segundo numero: ");
+    scanf("%f", &num2);
+
+    switch (operador) {
+        case '+':
+            resultado = num1 + num2;
+            printf("%.2f + %.2f = %.2f\n", num1, num2, resultado);
+            break;
+        case '-':
+            resultado = num1 - num2;
+            printf("%.2f - %.2f = %.2f\n", num1, num2, resultado);
+            break;
+        case '*':
+            resultado = num1 * num2;
+            printf("%.2f * %.2f = %.2f\n", num1, num2, resultado);
+            break;
+        case '/':
+            if (num2 != 0) {
+                resultado = num1 / num2;
+                printf("%.2f / %.2f = %.2f\n", num1, num2, resultado);
+            } else {
+                printf("Erro: Divisao por zero!\n");
+            }
+            break;
+        default:
+            printf("Operador invalido!\n");
+    }
+    return 0;
+}
+                    </code></pre>
+                </div>
+            </div>
+
+            <div class="exercicio">
+                <h3>Atividade 2: Tipo de Triângulo</h3>
+                <p>Leia três valores <code>float</code> que representam os lados de um triângulo. Verifique se eles
+                    podem formar um triângulo (a soma de quaisquer dois lados deve ser maior que o terceiro lado). Se
+                    formarem, classifique como:
+                <ul>
+                    <li>Equilátero: todos os lados iguais.</li>
+                    <li>Isósceles: dois lados iguais.</li>
+                    <li>Escaleno: todos os lados diferentes.</li>
+                </ul>
+                </p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-cond-ex2')">Mostrar/Ocultar
+                    Solução</button>
+                <div id="solucao-cond-ex2" class="solucao">
+                    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    float a, b, c;
+    printf("Digite o lado a: "); scanf("%f", &a);
+    printf("Digite o lado b: "); scanf("%f", &b);
+    printf("Digite o lado c: "); scanf("%f", &c);
+
+    // Verificar condição de existência de um triângulo
+    if (a < b + c && b < a + c && c < a + b) {
+        printf("Os lados podem formar um triangulo.\n");
+        if (a == b && b == c) {
+            printf("Tipo: Equilatero\n");
+        } else if (a == b || a == c || b == c) {
+            printf("Tipo: Isosceles\n");
+        } else {
+            printf("Tipo: Escaleno\n");
+        }
+    } else {
+        printf("Os lados NAO podem formar um triangulo.\n");
+    }
+    return 0;
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="lista-atividades-comunidade-condicionais">
+            <h2>Lista de Atividades (Para a Comunidade Resolver)</h2>
+            <div class="exercicio">
+                <h3>Desafio 1: Menu de Opções</h3>
+                <p>Crie um programa que exiba um menu com 3 opções:
+                <ol>
+                    <li>Converter Celsius para Fahrenheit</li>
+                    <li>Converter Fahrenheit para Celsius</li>
+                    <li>Sair</li>
+                </ol>
+                Leia a opção do usuário e, usando <code>switch</code>, execute a ação correspondente. Para as
+                conversões, peça a temperatura e mostre o resultado. (Fórmulas: $F = C \times \frac{9}{5} + 32$; $C = (F
+                - 32) \times \frac{5}{9}$).
+                </p>
+            </div>
+            <div class="exercicio">
+                <h3>Desafio 2: Verificação de Login Simples</h3>
+                <p>Crie um programa que peça um nome de usuário e uma senha. Defina um usuário e senha corretos no
+                    código (ex: "admin" e "1234"). Se o usuário e senha digitados forem corretos, exiba "Login
+                    bem-sucedido!". Caso contrário, exiba "Usuário ou senha incorretos.".</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>DevAprender C &copy; 2025 - Desenvolvido por [Nome do Grupo]</p>
+    </footer>
+    <script src="scripts.js"></script>
+</body>
+
+</html>

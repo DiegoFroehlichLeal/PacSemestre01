@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução à Programação em C - DevAprender C</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Dev</span>Aprender C</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Início</a></li>
+                    <li><a href="/pages/logica_programacao.html">Lógica</a></li>
+                    <li class="current"><a href="/pages/introducao_c.html">Intro C</a></li>
+                    <li><a href="/pages/tipos_dados_variaveis.html">Tipos/Variáveis</a></li>
+                    <li><a href="/pages/sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <h1>2. Introdução à Programação em C</h1>
+
+        <section id="historia-importancia-c">
+            <h2>História e Importância da Linguagem C</h2>
+            <p>A linguagem C foi criada por Dennis Ritchie nos Bell Labs da AT&T em 1972. Seu principal objetivo era ser
+                uma linguagem para o desenvolvimento do sistema operacional UNIX. Desde então, tornou-se uma das
+                linguagens de programação mais influentes e amplamente utilizadas.</p>
+            <p><strong>Importância:</strong></p>
+            <ul>
+                <li><strong>Base para muitas linguagens:</strong> C++, Java, C#, Python, JavaScript e muitas outras
+                    foram influenciadas ou construídas sobre conceitos de C.</li>
+                <li><strong>Performance:</strong> Permite um controle de baixoível sobre o hardware, resultando em
+                    programas muito eficientes.</li>
+                <li><strong>Portabilidade:</strong> Código C pode ser compilado para rodar em diversas plataformas.</li>
+                <li><strong>Uso em Sistemas Operacionais e Embarcados:</strong> Amplamente usada no kernel do Linux,
+                    Windows, macOS, e em microcontroladores.</li>
+                <li><strong>Desenvolvimento de Jogos e Aplicações Gráficas:</strong> Muitas engines de jogos e softwares
+                    gráficos utilizam C/C++ pela performance.</li>
+            </ul>
+        </section>
+
+        <section id="estrutura-basica-c">
+            <h2>Estrutura Básica de um Programa em C</h2>
+            <p>Um programa em C típico possui a seguinte estrutura:</p>
+            <pre><code class="language-c">
+// Comentário de linha única: Inclusão de Bibliotecas
+#include &lt;stdio.h&gt;  // Biblioteca padrão para entrada e saída de dados
+
+/*
+ Comentário de múltiplas linhas:
+ A função main é o ponto de entrada do programa.
+ Todo programa C deve ter uma função main.
+*/
+int main() {
+    // Corpo da função main: aqui vão as instruções do programa
+
+    // printf é uma função da biblioteca stdio.h para imprimir dados na tela
+    printf("Ola, Mundo!\n"); // "\n" é um caractere especial para nova linha
+
+    // return 0 indica que o programa terminou com sucesso
+    return 0;
+}
+            </code></pre>
+            <ul>
+                <li><strong><code>#include &lt;biblioteca.h&gt;</code>:</strong> Diretiva de pré-processamento que
+                    inclui o conteúdo de um arquivo de cabeçalho (biblioteca). <code>stdio.h</code> (Standard
+                    Input/Output) contém funções como <code>printf</code> (para saída) e <code>scanf</code> (para
+                    entrada).</li>
+                <li><strong><code>int main() { ... }</code>:</strong> A função principal onde a execução do programa
+                    começa.
+                    <ul>
+                        <li><code>int</code>: Indica que a função <code>main</code> retornará um valor inteiro ao
+                            sistema operacional.</li>
+                        <li><code>()</code>: Podem conter argumentos de linha de comando (avançado).</li>
+                        <li><code>{ ... }</code>: Delimitam o bloco de código da função.</li>
+                    </ul>
+                </li>
+                <li><strong><code>printf("texto");</code>:</strong> Função para exibir texto ou valores na tela
+                    (console).</li>
+                <li><strong><code>return 0;</code>:</strong> Finaliza a função <code>main</code> e retorna o valor
+                    <code>0</code> (indicando sucesso) para o sistema operacional. Um valor diferente de <code>0</code>
+                    geralmente indica um erro.</li>
+                <li><strong>Comentários:</strong> <code>//</code> para comentários de uma linha e <code>/* ... */</code>
+                    para múltiplas linhas. São ignorados pelo compilador e servem para explicar o código.</li>
+            </ul>
+        </section>
+
+        <section id="compilar-executar-c">
+            <h2>Como Compilar e Executar um Programa em C</h2>
+            <p>Para que um programa C seja executado, ele precisa ser:</p>
+            <ol>
+                <li><strong>Escrito:</strong> O código fonte é escrito em um editor de texto e salvo com a extensão
+                    <code>.c</code> (ex: <code>meu_programa.c</code>).</li>
+                <li><strong>Compilado:</strong> Um compilador C (como GCC, Clang, ou os embutidos em IDEs) traduz o
+                    código fonte <code>.c</code> para código de máquina, gerando um arquivo executável (ex:
+                    <code>meu_programa.exe</code> no Windows, ou apenas <code>meu_programa</code> no Linux/macOS).</li>
+                <li><strong>Executado:</strong> O arquivo executável é então rodado pelo sistema operacional.</li>
+            </ol>
+            <h3>Compiladores Populares:</h3>
+            <ul>
+                <li><strong>GCC (GNU Compiler Collection):</strong> Padrão em sistemas Linux, disponível para Windows
+                    (via MinGW ou Cygwin) e macOS.
+                    <ul>
+                        <li>Comando para compilar: <code>gcc meu_programa.c -o nome_do_executavel</code></li>
+                        <li>Comando para executar (Linux/macOS): <code>./nome_do_executavel</code></li>
+                        <li>Comando para executar (Windows): <code>nome_do_executavel.exe</code></li>
+                    </ul>
+                </li>
+                <li><strong>Dev-C++:</strong> IDE gratuita para Windows que utiliza o compilador MinGW (GCC). Possui
+                    botões para "Compilar" e "Executar".</li>
+                <li><strong>Code::Blocks:</strong> IDE gratuita e multiplataforma que pode usar diversos compiladores,
+                    incluindo o GCC. Também com interface gráfica para compilação e execução.</li>
+                <li><strong>Outros:</strong> Visual Studio (Windows, com compilador MSVC), Clang, compiladores online
+                    (Replit, OnlineGDB).</li>
+            </ul>
+            <p><strong>Atividade:</strong> Instale um compilador C (como o GCC com MinGW para Windows, ou use o que já
+                vem no seu Linux/macOS) ou um IDE (Code::Blocks ou Dev-C++). Copie o código "Olá, Mundo!" acima, salve
+                como <code>ola.c</code>, compile-o e execute-o para ver a mensagem no terminal/console.</p>
+        </section>
+
+        <section id="sintaxe-basica-c">
+            <h2>Sintaxe Básica (Comentários, Identação, Boas Práticas)</h2>
+            <h3>Comentários:</h3>
+            <p>Já mencionados, são essenciais para a clareza.</p>
+            <pre><code class="language-c">
+// Este é um comentário de linha única
+
+/*
+  Este é um
+  comentário de
+  múltiplas linhas.
+*/
+            </code></pre>
+            <h3>Identação:</h3>
+            <p>Refere-se ao uso de espaços ou tabulações no início das linhas para mostrar a estrutura hierárquica do
+                código (dentro de funções, ifs, loops, etc.). Embora o C não exija identação para funcionar, ela é
+                <strong>crucial</strong> para a legibilidade.</p>
+            <p><strong>Exemplo (boa identação):</strong></p>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int numero = 10;
+    if (numero > 5) {
+        printf("Maior que 5.\n"); // Bloco do if identado
+    } else {
+        printf("Menor ou igual a 5.\n"); // Bloco do else identado
+    }
+    return 0;
+}
+            </code></pre>
+            <h3>Boas Práticas:</h3>
+            <ul>
+                <li><strong>Nomes Significativos:</strong> Use nomes claros para variáveis e funções (ex: `idadeUsuario`
+                    em vez de `i`, `calcularSoma` em vez de `cs`).</li>
+                <li><strong>Consistência:</strong> Mantenha um estilo de código consistente (identação, chaves,
+                    espaçamento).</li>
+                <li><strong>Simplicidade:</strong> Escreva código claro e direto.</li>
+                <li><strong>Modularidade:</strong> Divida programas grandes em funções menores e reutilizáveis.</li>
+                <li><strong>Comente o Necessário:</strong> Explique partes complexas ou decisões de design, não o óbvio.
+                </li>
+                <li><strong>Ponto e Vírgula:</strong> Quase toda instrução em C termina com <code>;</code>. É um erro
+                    comum esquecê-lo.</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>DevAprender C &copy; 2025 - Desenvolvido por [Nome do Grupo]</p>
+    </footer>
+    <script src="/scripts/scripts.js"></script>
+</body>
+
+</html>

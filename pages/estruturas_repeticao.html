@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estruturas de Repetição em C - DevAprender C</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Dev</span>Aprender C</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Início</a></li>
+                    <li><a href="/pages/logica_programacao.html">Lógica</a></li>
+                    <li><a href="/pages/introducao_c.html">Intro C</a></li>
+                    <li><a href="/pages/tipos_dados_variaveis.html">Tipos/Variáveis</a></li>
+                    <li><a href="/pages/operadores_expressoes.html">Operadores</a></li>
+                    <li><a href="/pages/estruturas_condicionais.html">Condicionais</a></li>
+                    <li class="current"><a href="/pages/estruturas_repeticao.html">Repetição</a></li>
+                    <li><a href="/pages/entrada_saida_dados.html">Entrada/Saída</a></li>
+                    <li><a href="/pages/sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <h1>6. Estruturas de Repetição (Loops)</h1>
+        <p>Estruturas de repetição, ou loops, permitem executar um bloco de código múltiplas vezes, enquanto uma
+            determinada condição for verdadeira ou por um número específico de iterações.</p>
+
+        <section id="while-loop">
+            <h2><code>while</code></h2>
+            <p>O loop <code>while</code> executa um bloco de código repetidamente enquanto uma condição especificada for
+                verdadeira. A condição é verificada <strong>antes</strong> de cada execução do bloco.</p>
+            <h3>Sintaxe:</h3>
+            <pre><code class="language-c">
+while (condicao) {
+    // Bloco de código a ser repetido
+    // É importante que algo dentro do bloco altere a condição,
+    // para evitar um loop infinito.
+}
+            </code></pre>
+            <h3>Exemplo: Contagem até 5</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int contador = 1;
+
+    while (contador <= 5) {
+        printf("Contador: %d\n", contador);
+        contador++; // Incrementa o contador para eventualmente tornar a condição falsa
+    }
+    printf("Fim do loop while.\n");
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="do-while-loop">
+            <h2><code>do...while</code></h2>
+            <p>O loop <code>do...while</code> é semelhante ao <code>while</code>, mas com uma diferença crucial: o bloco
+                de código é executado <strong>pelo menos uma vez</strong>, e a condição é verificada
+                <strong>após</strong> a execução do bloco.</p>
+            <h3>Sintaxe:</h3>
+            <pre><code class="language-c">
+do {
+    // Bloco de código a ser repetido
+    // Algo aqui deve eventualmente tornar a condição falsa.
+} while (condicao); // Note o ponto e vírgula aqui
+            </code></pre>
+            <h3>Exemplo: Pedir entrada até ser válida</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int numero;
+
+    do {
+        printf("Digite um numero positivo (ou 0 para sair): ");
+        scanf("%d", &numero);
+
+        if (numero < 0) {
+            printf("Numero invalido! Tente novamente.\n");
+        } else if (numero > 0) {
+            printf("Voce digitou: %d\n", numero);
+        }
+    } while (numero < 0); // Repete se o número for negativo
+
+    printf("Saindo do loop do...while.\n");
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="for-loop">
+            <h2><code>for</code></h2>
+            <p>O loop <code>for</code> é ideal para quando se sabe de antemão quantas vezes um bloco de código deve ser
+                repetido. Ele combina inicialização, condição e incremento (ou decremento) em uma única linha.</p>
+            <h3>Sintaxe:</h3>
+            <pre><code class="language-c">
+for (inicializacao; condicao; atualizacao) {
+    // Bloco de código a ser repetido
+}
+            </code></pre>
+            <ul>
+                <li><strong>Inicialização:</strong> Executada uma única vez, no início do loop. Geralmente usada para
+                    declarar e inicializar uma variável de controle.</li>
+                <li><strong>Condição:</strong> Verificada antes de cada iteração. Se for verdadeira, o bloco é
+                    executado. Se falsa, o loop termina.</li>
+                <li><strong>Atualização:</strong> Executada ao final de cada iteração. Geralmente usada para incrementar
+                    ou decrementar a variável de controle.</li>
+            </ul>
+            <h3>Exemplo: Tabuada do 5</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int i;
+    int numero = 5;
+
+    printf("Tabuada do %d:\n", numero);
+    for (i = 1; i <= 10; i++) {
+        printf("%d x %d = %d\n", numero, i, numero * i);
+    }
+    printf("Fim do loop for.\n");
+    return 0;
+}
+            </code></pre>
+            <p>Também é comum o uso de <code>break</code> para sair de um loop prematuramente e <code>continue</code>
+                para pular a iteração atual e ir para a próxima.</p>
+        </section>
+
+        <section id="exemplos-codigos-repeticao">
+            <h2>Exemplos de Códigos (Atividades Resolvidas)</h2>
+            <div class="exercicio">
+                <h3>Atividade 1: Soma dos Primeiros N Números Naturais</h3>
+                <p>Leia um número inteiro N e calcule a soma de todos os números de 1 até N usando um loop
+                    <code>for</code>.</p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-rep-ex1')">Mostrar/Ocultar
+                    Solução</button>
+                <div id="solucao-rep-ex1" class="solucao">
+                    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int n, i;
+    int soma = 0;
+
+    printf("Digite um numero inteiro positivo N: ");
+    scanf("%d", &n);
+
+    if (n < 1) {
+        printf("N deve ser positivo.\n");
+        return 1; // Indica erro
+    }
+
+    for (i = 1; i <= n; i++) {
+        soma += i; // O mesmo que soma = soma + i;
+    }
+
+    printf("A soma dos numeros de 1 ate %d e: %d\n", n, soma);
+    return 0;
+}
+                    </code></pre>
+                </div>
+            </div>
+
+            <div class="exercicio">
+                <h3>Atividade 2: Contagem Regressiva com While</h3>
+                <p>Faça um programa que realize uma contagem regressiva de 10 até 1, mostrando cada número na tela, e
+                    finalize com "FOGO!". Use <code>while</code>.</p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-rep-ex2')">Mostrar/Ocultar
+                    Solução</button>
+                <div id="solucao-rep-ex2" class="solucao">
+                    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int contador = 10;
+
+    while (contador >= 1) {
+        printf("%d...\n", contador);
+        contador--;
+    }
+    printf("FOGO!\n");
+    return 0;
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="lista-atividades-comunidade-repeticao">
+            <h2>Lista de Atividades (Para a Comunidade Resolver)</h2>
+            <div class="exercicio">
+                <h3>Desafio 1: Fatorial de um Número</h3>
+                <p>Crie um programa que leia um número inteiro não negativo e calcule seu fatorial. O fatorial de N (N!)
+                    é $N \times (N-1) \times (N-2) \times \dots \times 1$. O fatorial de 0 é 1. Use o loop que achar
+                    mais adequado.</p>
+            </div>
+            <div class="exercicio">
+                <h3>Desafio 2: Adivinhe o Número</h3>
+                <p>Gere um número aleatório entre 1 e 100 (pesquise como usar `rand()` e `srand()` da biblioteca
+                    `stdlib.h`). Peça ao usuário para tentar adivinhar o número. A cada tentativa, informe se o palpite
+                    foi muito alto, muito baixo ou correto. Continue pedindo palpites até o usuário acertar. Conte o
+                    número de tentativas.</p>
+            </div>
+            <div class="exercicio">
+                <h3>Desafio 3: Padrão de Asteriscos</h3>
+                <p>Crie um programa que imprima o seguinte padrão usando loops aninhados (um loop dentro de outro):
+                <pre>
+*
+**
+***
+****
+*****
+                </pre>
+                Peça ao usuário o número de linhas desejado.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>DevAprender C &copy; 2025 - Desenvolvido por [Nome do Grupo]</p>
+    </footer>
+    <script src="/scripts/scripts.js"></script>
+</body>
+
+</html>

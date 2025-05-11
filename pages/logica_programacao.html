@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lógica de Programação - DevAprender C</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Dev</span>Aprender C</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Início</a></li>
+                    <li class="current"><a href="/pages/logica_programacao.html">Lógica</a></li>
+                    <li><a href="/pages/introducao_c.html">Intro C</a></li>
+                    <li><a href="/pages/sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <h1>1. Lógica de Programação</h1>
+
+        <section id="definicao-importancia">
+            <h2>Definição e Importância</h2>
+            <p><strong>Definição:</strong> A lógica de programação é a técnica de encadear pensamentos para atingir um
+                determinado objetivo. É a organização e o planejamento de instruções, em uma ordem lógica, para que o
+                computador possa executar uma tarefa específica.</p>
+            <p><strong>Importância:</strong> É fundamental para qualquer programador, pois constitui a base para o
+                desenvolvimento de algoritmos coesos e eficientes. Sem uma boa lógica, os programas podem se tornar
+                confusos, ineficientes ou simplesmente não funcionar como esperado. Ela desenvolve o raciocínio
+                analítico e a capacidade de resolver problemas de forma estruturada.</p>
+        </section>
+
+        <section id="logica-resolver-problemas">
+            <h2>Como a Lógica é Usada para Resolver Problemas</h2>
+            <p>A lógica é aplicada na resolução de problemas através da criação de algoritmos. Um algoritmo é uma
+                sequência finita de passos bem definidos que descrevem a solução de um problema. Para usar a lógica
+                efetivamente:</p>
+            <ol>
+                <li><strong>Análise do Problema:</strong> Entender completamente o que precisa ser resolvido, quais são
+                    as entradas (dados) e quais são as saídas esperadas (resultados).</li>
+                <li><strong>Divisão do Problema:</strong> Quebrar problemas complexos em subproblemas menores e mais
+                    fáceis de gerenciar.</li>
+                <li><strong>Desenvolvimento do Algoritmo:</strong> Definir a sequência de passos (instruções) de forma
+                    clara e precisa.</li>
+                <li><strong>Teste e Refinamento:</strong> Verificar se o algoritmo produz o resultado esperado para
+                    diferentes entradas e corrigir quaisquer falhas lógicas.</li>
+            </ol>
+        </section>
+
+        <section id="exemplos-simples">
+            <h2>Exemplos Simples (Algoritmos do Cotidiano)</h2>
+            <p>A lógica está presente em muitas tarefas do nosso dia a dia. Veja alguns exemplos:</p>
+            <h3>Como Fazer um Bolo (Simplificado):</h3>
+            <ol>
+                <li>INÍCIO</li>
+                <li>Separar ingredientes (farinha, ovos, açúcar, fermento, leite).</li>
+                <li>Pré-aquecer o forno a 180°C.</li>
+                <li>Em uma tigela, misturar ovos e açúcar.</li>
+                <li>Adicionar farinha e fermento, misturando.</li>
+                <li>Adicionar leite aos poucos, até a massa ficar homogênea.</li>
+                <li>Despejar a massa em uma forma untada.</li>
+                <li>Levar ao forno por 30-40 minutos.</li>
+                <li>Verificar se está assado (espetar um palito; se sair limpo, está pronto).</li>
+                <li>Retirar do forno e esperar esfriar.</li>
+                <li>FIM</li>
+            </ol>
+
+            <h3>Trocar uma Lâmpada Queimada:</h3>
+            <ol>
+                <li>INÍCIO</li>
+                <li>Verificar se há uma lâmpada nova e compatível.</li>
+                <li>Desligar o interruptor de energia do cômodo. (SEGURANÇA!)</li>
+                <li>Pegar uma escada, se necessário.</li>
+                <li>Posicionar a escada de forma segura sob a lâmpada.</li>
+                <li>Subir na escada.</li>
+                <li>Girar a lâmpada queimada no sentido anti-horário para removê-la.</li>
+                <li>Rosquear a lâmpada nova no sentido horário até ficar firme.</li>
+                <li>Descer da escada.</li>
+                <li>Ligar o interruptor para testar a nova lâmpada.</li>
+                <li>Se a lâmpada não acender, verificar se está bem rosqueada ou se o problema é outro. Caso contrário,
+                    a tarefa está concluída.</li>
+                <li>Descartar a lâmpada queimada em local apropriado.</li>
+                <li>FIM</li>
+            </ol>
+        </section>
+
+        <section id="fluxogramas">
+            <h2>Fluxogramas</h2>
+            <p>Fluxogramas são diagramas que representam visualmente um algoritmo, mostrando o fluxo das operações e
+                decisões. Ferramentas como o <a href="http://www.flowgorithm.org" target="_blank"
+                    rel="noopener noreferrer">Flowgorithm</a> são excelentes para criar e testar fluxogramas.</p>
+            <h3>Símbolos Básicos:</h3>
+            <ul>
+                <li><strong>Terminal (Início/Fim):</strong> Forma oval.</li>
+                <li><strong>Processamento:</strong> Retângulo (ex: <code>soma = a + b</code>).</li>
+                <li><strong>Entrada/Saída:</strong> Paralelogramo (ex: Ler <code>valor</code>, Escrever
+                    <code>resultado</code>).</li>
+                <li><strong>Decisão:</strong> Losango (ex: <code>idade >= 18?</code>). Possui saídas "Sim" e "Não".</li>
+                <li><strong>Conector:</strong> Círculo pequeno (para ligar partes do fluxograma).</li>
+                <li><strong>Linha de Fluxo:</strong> Setas indicando a direção.</li>
+            </ul>
+            <img src="caminho/para/sua/imagem_simbolos_fluxograma.png" alt="Símbolos de Fluxograma"
+                style="max-width:100%;">
+
+            <h3>Exemplo Prático: Calcular a Média de Dois Números</h3>
+            <p><strong>Fluxograma:</strong></p>
+            <img src="caminho/para/sua/imagem_fluxograma_media.png" alt="Fluxograma para calcular média"
+                style="max-width:100%;">
+            <p><strong>Passos do Algoritmo (correspondentes ao fluxograma):</strong></p>
+            <ol>
+                <li>INÍCIO</li>
+                <li>Ler o primeiro número (<code>n1</code>)</li>
+                <li>Ler o segundo número (<code>n2</code>)</li>
+                <li>Calcular a média: <code>media = (n1 + n2) / 2</code></li>
+                <li>Escrever o valor da <code>media</code></li>
+                <li>FIM</li>
+            </ol>
+        </section>
+
+        <section id="exercicios-logica">
+            <h2>Exercícios</h2>
+            <p>Use o Flowgorithm para criar os fluxogramas e depois teste sua lógica nos desafios do <a
+                    href="https://rachacuca.com.br/logica/problemas/" target="_blank" rel="noopener noreferrer">Racha
+                    Cuca - Problemas de Lógica</a>.</p>
+
+            <div class="exercicio">
+                <h3>Exercício 1: Verificar se um número é Par ou Ímpar</h3>
+                <p>Crie um fluxograma que leia um número inteiro e informe se ele é par ou ímpar.</p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-ex1-logica')">Mostrar/Ocultar Solução
+                    (Fluxograma)</button>
+                <div id="solucao-ex1-logica" class="solucao">
+                    <p><strong>Solução (Fluxograma):</strong></p>
+                    <img src="caminho/para/sua/imagem_fluxograma_par_impar.png" alt="Fluxograma Par ou Ímpar"
+                        style="max-width:100%;">
+                    <p><strong>Lógica:</strong> Um número é par se o resto da sua divisão por 2 for igual a 0.</p>
+                    <ol>
+                        <li>INÍCIO</li>
+                        <li>Ler <code>numero</code></li>
+                        <li>Se (<code>numero</code> % 2 == 0) Então
+                            <ul>
+                                <li>Escrever "O número é PAR"</li>
+                            </ul>
+                        </li>
+                        <li>Senão
+                            <ul>
+                                <li>Escrever "O número é ÍMPAR"</li>
+                            </ul>
+                        </li>
+                        <li>FIM</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="exercicio">
+                <h3>Exercício 2: Semáforo</h3>
+                <p>Crie um fluxograma que simule um semáforo simples. Se a cor for "VERMELHO", a ação é "PARE". Se for
+                    "AMARELO", a ação é "ATENÇÃO". Se for "VERDE", a ação é "SIGA". Considere uma entrada para a cor.
+                </p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-ex2-logica')">Mostrar/Ocultar Solução
+                    (Fluxograma)</button>
+                <div id="solucao-ex2-logica" class="solucao">
+                    <p><strong>Solução (Fluxograma):</strong></p>
+                    <img src="caminho/para/sua/imagem_fluxograma_semaforo.png" alt="Fluxograma Semáforo"
+                        style="max-width:100%;">
+                </div>
+            </div>
+            <p><strong>Desafio em Equipe:</strong> Escolham um problema do Racha Cuca, desenvolvam o fluxograma da
+                solução em grupo e apresentem para a turma, explicando a lógica utilizada.</p>
+        </section>
+    </div>
+
+    <footer>
+        <p>DevAprender C &copy; 2025 - Desenvolvido por [Nome do Grupo]</p>
+    </footer>
+    <script src="/scripts/scripts.js"></script>
+</body>
+
+</html>

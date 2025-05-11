@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tipos de Dados e Variáveis em C - DevAprender C</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Dev</span>Aprender C</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Início</a></li>
+                    <li><a href="/pages/logica_programacao.html">Lógica</a></li>
+                    <li><a href="/pages/introducao_c.html">Intro C</a></li>
+                    <li class="current"><a href="/pages/tipos_dados_variaveis.html">Tipos/Variáveis</a></li>
+                    <li><a href="/pages/operadores_expressoes.html">Operadores</a></li>
+                    <li><a href="/pages/sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <h1>3. Tipos de Dados e Variáveis</h1>
+
+        <section id="tipos-primitivos">
+            <h2>Tipos Primitivos</h2>
+            <p>Em C, os tipos de dados primitivos são os blocos de construção básicos para armazenar informações. Os
+                mais comuns são:</p>
+            <ul>
+                <li><strong><code>int</code>:</strong> Usado para armazenar números inteiros (sem casas decimais). Ex:
+                    <code>-10</code>, <code>0</code>, <code>100</code>. Geralmente ocupa 2 ou 4 bytes.</li>
+                <li><strong><code>float</code>:</strong> Usado para armazenar números de ponto flutuante de precisão
+                    simples (com casas decimais). Ex: <code>3.14</code>, <code>-0.005</code>, <code>2.7e5</code>.
+                    Geralmente ocupa 4 bytes.</li>
+                <li><strong><code>double</code>:</strong> Usado para armazenar números de ponto flutuante de precisão
+                    dupla. Oferece mais precisão e uma faixa maior de valores que o <code>float</code>. Ex:
+                    <code>3.1415926535</code>. Geralmente ocupa 8 bytes.</li>
+                <li><strong><code>char</code>:</strong> Usado para armazenar um único caractere. Ex: <code>'A'</code>,
+                    <code>'7'</code>, <code>'$'</code>. Caracteres são, na verdade, armazenados como números (seus
+                    valores na tabela ASCII). Geralmente ocupa 1 byte.</li>
+                <li><strong><code>void</code>:</strong> Um tipo especial que significa "sem tipo" ou "nenhum valor".
+                    Usado principalmente para indicar que uma função não retorna valor ou não possui parâmetros.</li>
+            </ul>
+            <p>Modificadores como <code>short</code>, <code>long</code>, <code>signed</code>, e <code>unsigned</code>
+                podem ser usados com tipos inteiros para alterar o tamanho ou a faixa de valores (ex:
+                <code>long int</code>, <code>unsigned char</code>).</p>
+        </section>
+
+        <section id="declaracao-inicializacao">
+            <h2>Declaração e Inicialização de Variáveis</h2>
+            <p>Uma <strong>variável</strong> é um espaço na memória do computador reservado para armazenar um valor.
+                Antes de usar uma variável, você deve declará-la, especificando seu tipo e nome.</p>
+            <p><strong>Declaração:</strong> <code>tipo nome_da_variavel;</code></p>
+            <p><strong>Inicialização:</strong> É o ato de atribuir um valor inicial a uma variável no momento da sua
+                declaração ou posteriormente.</p>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    // Declaração de variáveis
+    int idade;
+    float salario;
+    char inicial;
+    double pi_valor; // Alterado de 'pi' para 'pi_valor' para evitar conflito com constante PI abaixo, se houver.
+
+    // Inicialização de variáveis (atribuição de valores)
+    idade = 30;
+    salario = 2500.75f; // 'f' no final indica que é um float literal
+    inicial = 'J';
+    pi_valor = 3.1415926535;
+
+    // Declaração e inicialização na mesma linha
+    int ano = 2024;
+    float altura = 1.75f;
+
+    printf("Idade: %d anos\n", idade);
+    printf("Salario: R$ %.2f\n", salario); // %.2f formata para 2 casas decimais
+    printf("Inicial do nome: %c\n", inicial);
+    printf("Valor de PI (double): %lf\n", pi_valor); // %lf para double
+    printf("Ano: %d\n", ano);
+    printf("Altura: %.2f m\n", altura);
+
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="constantes">
+            <h2>Constantes (#define e const)</h2>
+            <p>Constantes são valores que não podem ser alterados durante a execução do programa. Usar constantes torna
+                o código mais legível e fácil de manter.</p>
+            <h3>Usando <code>#define</code> (Diretiva de Pré-processador):</h3>
+            <p><code>#define NOME_DA_CONSTANTE valor</code></p>
+            <p>O pré-processador substitui todas as ocorrências de <code>NOME_DA_CONSTANTE</code> pelo
+                <code>valor</code> antes da compilação.</p>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+#define PI 3.14159f
+#define MAX_ALUNOS 50
+
+int main() {
+    float raio = 5.0f;
+    float circunferencia = 2 * PI * raio;
+
+    printf("Circunferencia: %.2f\n", circunferencia);
+    printf("Maximo de alunos: %d\n", MAX_ALUNOS);
+
+    // PI = 3.14; // Erro! Não se pode atribuir valor a uma constante definida com #define
+    return 0;
+}
+            </code></pre>
+            <h3>Usando a Palavra-chave <code>const</code>:</h3>
+            <p><code>const tipo nome_da_constante = valor;</code></p>
+            <p>Cria uma variável cujo valor não pode ser modificado após a inicialização. É mais seguro e flexível que
+                <code>#define</code>, pois respeita o escopo e o tipo.</p>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    const float G = 9.81f; // Aceleração da gravidade
+    const int DIAS_SEMANA = 7;
+
+    printf("Gravidade: %.2f m/s^2\n", G);
+    printf("Dias na semana: %d\n", DIAS_SEMANA);
+
+    // G = 10.0f; // Erro! Variável 'G' é constante.
+    // DIAS_SEMANA = 8; // Erro!
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="regras-nomenclatura">
+            <h2>Regras de Nomenclatura para Variáveis</h2>
+            <ul>
+                <li>Nomes de variáveis podem conter letras (maiúsculas e minúsculas), números e o caractere underscore
+                    (<code>_</code>).</li>
+                <li>O primeiro caractere deve ser uma letra ou underscore. Não pode ser um número.</li>
+                <li>C é case-sensitive, o que significa que <code>idade</code>, <code>Idade</code> e <code>IDADE</code>
+                    são três variáveis diferentes.</li>
+                <li>Não podem ser usadas palavras-chave reservadas da linguagem C (como <code>int</code>,
+                    <code>float</code>, <code>if</code>, <code>while</code>, etc.) como nomes de variáveis.</li>
+                <li>É uma boa prática usar nomes descritivos que indiquem o propósito da variável (ex:
+                    <code>precoProduto</code>, <code>contadorDeAlunos</code>).</li>
+                <li>Convenções comuns:
+                    <ul>
+                        <li><strong>camelCase:</strong> <code>minhaVariavelDetalhada</code> (primeira letra minúscula,
+                            demais palavras com inicial maiúscula).</li>
+                        <li><strong>snake_case (ou underscore_case):</strong> <code>minha_variavel_detalhada</code>
+                            (palavras separadas por underscore, tudo minúsculo). Frequentemente usado em C.</li>
+                        <li><strong>PascalCase:</strong> <code>MinhaVariavelDetalhada</code> (todas as palavras com
+                            inicial maiúscula). Menos comum para variáveis em C, mais para tipos definidos pelo usuário.
+                        </li>
+                        <li><strong>Constantes:</strong> Frequentemente em MAIÚSCULAS com underscore
+                            (<code>MINHA_CONSTANTE</code>).</li>
+                    </ul>
+                </li>
+            </ul>
+            <p>Escolha uma convenção e seja consistente no seu projeto.</p>
+        </section>
+
+        <section id="exemplos-codigos-variaveis">
+            <h2>Exemplos de Códigos (Atividades Resolvidas)</h2>
+            <div class="exercicio">
+                <h3>Atividade 1: Calculadora Simples (Soma)</h3>
+                <p>Crie um programa que declare duas variáveis inteiras, atribua valores a elas, some esses valores e
+                    imprima o resultado.</p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-td-ex1')">Mostrar/Ocultar Solução</button>
+                <div id="solucao-td-ex1" class="solucao">
+                    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int numero1;
+    int numero2;
+    int soma;
+
+    numero1 = 15;
+    numero2 = 27;
+
+    soma = numero1 + numero2;
+
+    printf("O primeiro numero e: %d\n", numero1);
+    printf("O segundo numero e: %d\n", numero2);
+    printf("A soma de %d + %d e: %d\n", numero1, numero2, soma);
+
+    return 0;
+}
+                    </code></pre>
+                </div>
+            </div>
+
+            <div class="exercicio">
+                <h3>Atividade 2: Conversão de Temperatura (Celsius para Fahrenheit)</h3>
+                <p>Declare uma variável <code>float</code> para armazenar uma temperatura em Celsius. Converta-a para
+                    Fahrenheit usando a fórmula $F = (C \times \frac{9}{5}) + 32$ e imprima ambas as temperaturas.</p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-td-ex2')">Mostrar/Ocultar Solução</button>
+                <div id="solucao-td-ex2" class="solucao">
+                    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+#define FATOR_CONVERSAO (9.0f/5.0f) // Usar 9.0f e 5.0f para garantir divisão float
+#define PONTO_CONGELAMENTO 32.0f
+
+int main() {
+    float celsius;
+    float fahrenheit;
+
+    celsius = 25.5f; // Exemplo de temperatura em Celsius
+
+    fahrenheit = (celsius * FATOR_CONVERSAO) + PONTO_CONGELAMENTO;
+
+    printf("%.1f graus Celsius equivalem a %.1f graus Fahrenheit.\n", celsius, fahrenheit);
+
+    return 0;
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="lista-atividades-comunidade-variaveis">
+            <h2>Lista de Atividades (Para a Comunidade Resolver)</h2>
+            <div class="exercicio">
+                <h3>Desafio 1: Informações Pessoais</h3>
+                <p>Crie um programa que declare variáveis para armazenar seu nome (use uma string/array de char, que
+                    veremos mais adiante, ou por enquanto apenas a inicial), sua idade (<code>int</code>), sua altura em
+                    metros (<code>float</code>) e se você é estudante (<code>char</code> 'S' ou 'N'). Inicialize essas
+                    variáveis e imprima os valores de forma organizada.</p>
+            </div>
+            <div class="exercicio">
+                <h3>Desafio 2: Cálculo de Área de um Retângulo</h3>
+                <p>Declare duas variáveis (<code>float</code> ou <code>double</code>) para a base e a altura de um
+                    retângulo. Calcule a área ($Area = base \times altura$) e o perímetro ($Perimetro = 2 \times (base +
+                    altura)$). Imprima os resultados.</p>
+            </div>
+            <div class="exercicio">
+                <h3>Desafio 3: Troca de Valores</h3>
+                <p>Declare duas variáveis inteiras, <code>a</code> e <code>b</code>. Atribua valores a elas. Depois,
+                    crie um código que troque os valores entre <code>a</code> e <code>b</code> (o valor de
+                    <code>a</code> vai para <code>b</code> e o de <code>b</code> vai para <code>a</code>). Você pode
+                    usar uma variável auxiliar para facilitar.</p>
+            </div>
+        </section>
+    </div>
+    <nav class="navigation">
+        <a href="introducao_c.html" class="prev">Voltar</a>
+        <a href="operadores_expressoes.html" class="next">Próxima</a>
+    </nav>
+
+    <footer>
+        <p>DevAprender C &copy; 2025 - Desenvolvido por [Nome do Grupo]</p>
+    </footer>
+    <script src="/scripts/scripts.js"></script>
+</body>
+
+</html>

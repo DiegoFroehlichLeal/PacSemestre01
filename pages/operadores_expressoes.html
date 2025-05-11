@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operadores e Expressões em C - DevAprender C</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Dev</span>Aprender C</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Início</a></li>
+                    <li><a href="/pages/logica_programacao.html">Lógica</a></li>
+                    <li><a href="/pages/introducao_c.html">Intro C</a></li>
+                    <li><a href="/pages/tipos_dados_variaveis.html">Tipos/Variáveis</a></li>
+                    <li class="current"><a href="/pages/operadores_expressoes.html">Operadores</a></li>
+                    <li><a href="/pages/estruturas_condicionais.html">Condicionais</a></li>
+                    <li><a href="/pages/sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <h1>4. Operadores e Expressões</h1>
+        <p>Operadores são símbolos especiais que realizam operações sobre operandos (valores ou variáveis). Uma
+            expressão é uma combinação de operandos e operadores que resulta em um valor.</p>
+
+        <section id="operadores-aritmeticos">
+            <h2>Operadores Aritméticos</h2>
+            <p>Usados para realizar cálculos matemáticos.</p>
+            <ul>
+                <li><code>+</code> : Adição (Ex: <code>a + b</code>)</li>
+                <li><code>-</code> : Subtração (Ex: <code>a - b</code>)</li>
+                <li><code>*</code> : Multiplicação (Ex: <code>a * b</code>)</li>
+                <li><code>/</code> : Divisão (Ex: <code>a / b</code>). Se ambos os operandos forem inteiros, o resultado
+                    é a parte inteira da divisão. Para obter um resultado com casas decimais, pelo menos um operando
+                    deve ser <code>float</code> ou <code>double</code>.</li>
+                <li><code>%</code> : Módulo (Resto da divisão inteira. Ex: <code>10 % 3</code> resulta em
+                    <code>1</code>)</li>
+            </ul>
+            <h3>Exemplo:</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int a = 10, b = 4;
+    float c = 10.0f, d = 4.0f;
+
+    printf("a + b = %d\n", a + b);       // 14
+    printf("a - b = %d\n", a - b);       // 6
+    printf("a * b = %d\n", a * b);       // 40
+    printf("a / b = %d\n", a / b);       // 2 (divisão inteira)
+    printf("c / d = %.2f\n", c / d);   // 2.50 (divisão de ponto flutuante)
+    printf("a %% b = %d\n", a % b);     // 2 (resto de 10/4)
+
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="operadores-relacionais">
+            <h2>Operadores Relacionais</h2>
+            <p>Usados para comparar dois valores. O resultado de uma expressão relacional é um valor booleano
+                (verdadeiro ou falso), que em C é representado por <code>1</code> (verdadeiro) ou <code>0</code>
+                (falso).</p>
+            <ul>
+                <li><code>==</code> : Igual a (Ex: <code>a == b</code>)</li>
+                <li><code>!=</code> : Diferente de (Ex: <code>a != b</code>)</li>
+                <li><code>&lt;</code> : Menor que (Ex: <code>a &lt; b</code>)</li>
+                <li><code>&gt;</code> : Maior que (Ex: <code>a &gt; b</code>)</li>
+                <li><code>&lt;=</code> : Menor ou igual a (Ex: <code>a &lt;= b</code>)</li>
+                <li><code>&gt;=</code> : Maior ou igual a (Ex: <code>a &gt;= b</code>)</li>
+            </ul>
+            <h3>Exemplo:</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int x = 5, y = 10;
+
+    printf("x == y : %d\n", x == y);  // 0 (falso)
+    printf("x != y : %d\n", x != y);  // 1 (verdadeiro)
+    printf("x < y  : %d\n", x < y);   // 1 (verdadeiro)
+    printf("x > y  : %d\n", x > y);   // 0 (falso)
+    printf("x <= 5 : %d\n", x <= 5);  // 1 (verdadeiro)
+    printf("y >= 10: %d\n", y >= 10); // 1 (verdadeiro)
+
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="operadores-logicos">
+            <h2>Operadores Lógicos</h2>
+            <p>Usados para combinar ou modificar expressões lógicas (booleanas).</p>
+            <ul>
+                <li><code>&&</code> : E lógico (AND) - Verdadeiro somente se ambas as expressões forem verdadeiras. (Ex:
+                    <code>cond1 && cond2</code>)</li>
+                <li><code>||</code> : OU lógico (OR) - Verdadeiro se pelo menos uma das expressões for verdadeira. (Ex:
+                    <code>cond1 || cond2</code>)</li>
+                <li><code>!</code> : NÃO lógico (NOT) - Inverte o valor lógico da expressão. (Ex: <code>!cond1</code>)
+                </li>
+            </ul>
+            <h3>Exemplo:</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int idade = 25;
+    float salario = 3000.0f;
+    _Bool temEmprego = 1; // Usando _Bool para clareza (ou int 0/1)
+
+    // Exemplo 1: Maior de idade E tem emprego
+    if (idade >= 18 && temEmprego) {
+        printf("Maior de idade e empregado.\n");
+    } else {
+        printf("Nao atende aos criterios de maioridade e emprego.\n");
+    }
+
+    // Exemplo 2: Salário alto OU idade acima de 60
+    if (salario > 5000.0f || idade > 60) {
+        printf("Tem salario alto OU idade avancada.\n");
+    }
+
+    // Exemplo 3: NÃO é menor de idade
+    if (!(idade < 18)) {
+        printf("Nao e menor de idade.\n");
+    }
+
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="ordem-precedencia">
+            <h2>Ordem de Precedência dos Operadores</h2>
+            <p>A ordem de precedência define quais operadores são avaliados primeiro em uma expressão complexa.
+                Parênteses <code>()</code> podem ser usados para alterar a ordem padrão de avaliação.</p>
+            <p>Ordem geral (do mais alto para o mais baixo, simplificado):</p>
+            <ol>
+                <li>Parênteses <code>()</code></li>
+                <li>Operadores unários (<code>!</code>, <code>++</code>, <code>--</code>, <code>-</code> unário)</li>
+                <li>Multiplicativos (<code>*</code>, <code>/</code>, <code>%</code>)</li>
+                <li>Aditivos (<code>+</code>, <code>-</code>)</li>
+                <li>Relacionais (<code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>)</li>
+                <li>Igualdade (<code>==</code>, <code>!=</code>)</li>
+                <li>E lógico (<code>&&</code>)</li>
+                <li>OU lógico (<code>||</code>)</li>
+                <li>Atribuição (<code>=</code>, <code>+=</code>, <code>-=</code>, etc.)</li>
+            </ol>
+            <p><strong>Exemplo:</strong> <code>int resultado = 5 + 3 * 2;</code> // resultado será 11 (3*2 primeiro,
+                depois +5)</p>
+            <p><code>int resultado2 = (5 + 3) * 2;</code> // resultado2 será 16 (5+3 primeiro, depois *2)</p>
+            <p>É uma boa prática usar parênteses para tornar expressões complexas mais claras, mesmo que a precedência
+                padrão já forneça o resultado desejado.</p>
+        </section>
+
+        <section id="exemplos-codigos-operadores">
+            <h2>Exemplos de Códigos (Atividades Resolvidas)</h2>
+            <div class="exercicio">
+                <h3>Atividade 1: Verificar se um número está em um intervalo</h3>
+                <p>Leia um número inteiro e verifique se ele está entre 10 e 20 (inclusive).</p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-op-ex1')">Mostrar/Ocultar Solução</button>
+                <div id="solucao-op-ex1" class="solucao">
+                    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int numero;
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &numero);
+
+    if (numero >= 10 && numero <= 20) {
+        printf("O numero %d esta entre 10 e 20 (inclusive).\n", numero);
+    } else {
+        printf("O numero %d NAO esta entre 10 e 20.\n", numero);
+    }
+    return 0;
+}
+                    </code></pre>
+                </div>
+            </div>
+
+            <div class="exercicio">
+                <h3>Atividade 2: Calculadora de IMC Simples</h3>
+                <p>Leia o peso (float) e a altura (float) de uma pessoa. Calcule o IMC ($peso / (altura \times
+                    altura)$). Use operadores aritméticos.</p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-op-ex2')">Mostrar/Ocultar Solução</button>
+                <div id="solucao-op-ex2" class="solucao">
+                    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    float peso, altura, imc;
+
+    printf("Digite seu peso em kg (ex: 70.5): ");
+    scanf("%f", &peso);
+    printf("Digite sua altura em metros (ex: 1.75): ");
+    scanf("%f", &altura);
+
+    if (altura > 0) { // Evita divisão por zero
+        imc = peso / (altura * altura);
+        printf("Seu IMC e: %.2f\n", imc);
+    } else {
+        printf("Altura invalida!\n");
+    }
+    return 0;
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="lista-atividades-comunidade-operadores">
+            <h2>Lista de Atividades (Para a Comunidade Resolver)</h2>
+            <div class="exercicio">
+                <h3>Desafio 1: Ano Bissexto</h3>
+                <p>Crie um programa que leia um ano e determine se ele é bissexto. Um ano é bissexto se for divisível
+                    por 4, exceto para anos terminados em 00, a menos que sejam divisíveis por 400. (Ex: 2000 e 2024 são
+                    bissextos; 1900 e 2023 não são). Use operadores lógicos e de módulo.</p>
+            </div>
+            <div class="exercicio">
+                <h3>Desafio 2: Avaliação de Expressão Lógica</h3>
+                <p>Dados <code>int a = 5, b = 10, c = 0;</code>. Qual o resultado das seguintes expressões em C?
+                <ol>
+                    <li><code>a > b || c == 0</code></li>
+                    <li><code>a < b && c != 0</code></li>
+                    <li><code>!(a == 5) && b != 10</code></li>
+                    <li><code>(a + b > 10) || (c - a < 0 && b > 0)</code></li>
+                </ol>
+                Tente prever o resultado e depois crie um pequeno programa para verificar.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>DevAprender C &copy; 2025 - Desenvolvido por [Nome do Grupo]</p>
+    </footer>
+    <script src="/scripts/scripts.js"></script>
+</body>
+
+</html>

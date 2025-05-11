@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrada e Saída de Dados em C - DevAprender C</title>
+    <link rel="stylesheet" href="/styles/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">Dev</span>Aprender C</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="/index.html">Início</a></li>
+                    <li><a href="/pages/logica_programacao.html">Lógica</a></li>
+                    <li><a href="/pages/introducao_c.html">Intro C</a></li>
+                    <li><a href="/pages/tipos_dados_variaveis.html">Tipos/Variáveis</a></li>
+                    <li><a href="/pages/operadores_expressoes.html">Operadores</a></li>
+                    <li><a href="/pages/estruturas_condicionais.html">Condicionais</a></li>
+                    <li><a href="/pages/estruturas_repeticao.html">Repetição</a></li>
+                    <li class="current"><a href="/pages/entrada_saida_dados.html">Entrada/Saída</a></li>
+                    <li><a href="/pages/sobre.html">Sobre</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container main-content">
+        <h1>7. Entrada e Saída de Dados</h1>
+        <p>A capacidade de interagir com o usuário, recebendo dados (entrada) e mostrando resultados (saída), é
+            fundamental em programação. Em C, isso é comumente feito usando funções da biblioteca padrão
+            <code>&lt;stdio.h&gt;</code>.</p>
+
+        <section id="funcao-printf">
+            <h2>Uso da Função <code>printf</code> para Saída de Dados</h2>
+            <p>A função <code>printf</code> (print formatted) é usada para enviar dados formatados para a saída padrão,
+                que geralmente é a tela do console.</p>
+            <h3>Sintaxe Básica:</h3>
+            <pre><code class="language-c">
+printf("texto simples");
+printf("texto com valor: %especificador", variavel);
+            </code></pre>
+            <ul>
+                <li>O primeiro argumento é uma string de controle que pode conter texto literal e especificadores de
+                    formato.</li>
+                <li>Especificadores de formato (começam com <code>%</code>) indicam o tipo de dado que será impresso e
+                    como ele deve ser formatado.</li>
+                <li>Os argumentos subsequentes são as variáveis ou valores a serem impressos, na ordem correspondente
+                    aos especificadores.</li>
+            </ul>
+            <h3>Exemplo:</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    char nome[] = "Alice"; // Array de caracteres (string)
+    int idade = 30;
+    float altura = 1.65f;
+
+    printf("Ola, Mundo!\n"); // \n é o caractere de nova linha
+    printf("Nome: %s\n", nome);
+    printf("Idade: %d anos\n", idade);
+    printf("Altura: %.2f metros\n", altura); // %.2f para float com 2 casas decimais
+    printf("Idade em hexadecimal: %X\n", idade);
+    printf("Caractere: %c\n", 'A');
+    printf("Imprimindo o simbolo de porcentagem: %%\n");
+
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="funcao-scanf">
+            <h2>Uso da Função <code>scanf</code> para Entrada de Dados</h2>
+            <p>A função <code>scanf</code> (scan formatted) é usada para ler dados formatados da entrada padrão,
+                geralmente o teclado, e armazená-los em variáveis.</p>
+            <h3>Sintaxe Básica:</h3>
+            <pre><code class="language-c">
+scanf("%especificador", &variavel);
+            </code></pre>
+            <ul>
+                <li>O primeiro argumento é uma string de controle com especificadores de formato que indicam o tipo de
+                    dado esperado.</li>
+                <li>Os argumentos subsequentes são os <strong>endereços</strong> das variáveis onde os dados lidos serão
+                    armazenados. O operador <code>&</code> (operador de endereço) é usado para obter o endereço da
+                    variável.</li>
+                <li><strong>Importante:</strong> Ao ler strings (arrays de char) com <code>%s</code>, não se usa o
+                    <code>&</code> porque o nome de um array já é um ponteiro para seu primeiro elemento. No entanto, é
+                    crucial garantir que o array tenha espaço suficiente para armazenar a string lida, incluindo o
+                    caractere nulo terminador <code>\0</code>, para evitar buffer overflow.</li>
+            </ul>
+            <h3>Exemplo:</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int numero;
+    float valorFlutuante;
+    char inicialNome;
+    char nomeCompleto[50]; // Array para armazenar uma string
+
+    printf("Digite um numero inteiro: ");
+    scanf("%d", &numero);
+
+    printf("Digite um valor flutuante: ");
+    scanf("%f", &valorFlutuante);
+
+    printf("Digite a inicial do seu nome: ");
+    scanf(" %c", &inicialNome); // Espaço antes de %c para consumir o newline
+                                // deixado pelo scanf anterior.
+
+    printf("Digite seu nome completo (ate 49 caracteres): ");
+    scanf("%s", nomeCompleto); // Não usa & com arrays de char para %s
+                              // Cuidado: scanf("%s", ...) para de ler no primeiro espaço.
+
+    printf("\n--- Dados Digitados ---\n");
+    printf("Numero: %d\n", numero);
+    printf("Valor Flutuante: %.2f\n", valorFlutuante);
+    printf("Inicial: %c\n", inicialNome);
+    printf("Nome Completo (primeira palavra): %s\n", nomeCompleto);
+
+    return 0;
+}
+            </code></pre>
+            <p><strong>Atenção com <code>scanf</code>:</strong></p>
+            <ul>
+                <li>Pode ser problemático com entradas inesperadas.</li>
+                <li><code>scanf("%s", str)</code> para de ler no primeiro espaço em branco. Para ler uma linha inteira
+                    com espaços, funções como <code>fgets()</code> são mais seguras e apropriadas.</li>
+                <li>É importante verificar o valor de retorno de <code>scanf</code>, que indica o número de itens lidos
+                    com sucesso.</li>
+            </ul>
+        </section>
+
+        <section id="especificadores-formato">
+            <h2>Formatação de Saída com Especificadores</h2>
+            <p>Especificadores de formato em <code>printf</code> e <code>scanf</code> controlam como os dados são
+                interpretados e exibidos.</p>
+            <h3>Principais Especificadores:</h3>
+            <ul>
+                <li><code>%d</code> ou <code>%i</code> : Inteiro decimal com sinal (<code>int</code>)</li>
+                <li><code>%u</code> : Inteiro decimal sem sinal (<code>unsigned int</code>)</li>
+                <li><code>%f</code> : Ponto flutuante decimal (<code>float</code>, <code>double</code>). Para
+                    <code>scanf</code>, use <code>%f</code> para <code>float</code> e <code>%lf</code> (L minúsculo)
+                    para <code>double</code>.</li>
+                <li><code>%e</code> ou <code>%E</code> : Notação científica (ex: 1.23e+02)</li>
+                <li><code>%c</code> : Caractere único (<code>char</code>)</li>
+                <li><code>%s</code> : String (sequência de caracteres, terminada por <code>\0</code>)</li>
+                <li><code>%p</code> : Ponteiro (endereço de memória, exibido em hexadecimal)</li>
+                <li><code>%x</code> ou <code>%X</code> : Inteiro hexadecimal sem sinal (letras minúsculas ou maiúsculas)
+                </li>
+                <li><code>%o</code> : Inteiro octal sem sinal</li>
+                <li><code>%%</code> : Para imprimir o próprio caractere <code>%</code></li>
+            </ul>
+            <h3>Modificadores de Formato (para <code>printf</code>):</h3>
+            <ul>
+                <li><strong>Largura:</strong> <code>%5d</code> (imprime o inteiro em um campo de pelo menos 5
+                    caracteres, alinhado à direita por padrão).</li>
+                <li><strong>Alinhamento à Esquerda:</strong> <code>%-5d</code> (alinhado à esquerda).</li>
+                <li><strong>Preenchimento com Zeros:</strong> <code>%05d</code> (preenche com zeros à esquerda).</li>
+                <li><strong>Precisão (para floats):</strong> <code>%.2f</code> (imprime com 2 casas decimais).</li>
+                <li><strong>Precisão (para strings):</strong> <code>%.5s</code> (imprime os primeiros 5 caracteres da
+                    string).</li>
+            </ul>
+            <h3>Exemplo Avançado de Formatação:</h3>
+            <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    int item_id = 101;
+    char produto[] = "Caneta Azul";
+    float preco = 1.758f;
+
+    printf("|--------------------------------|\n");
+    printf("| ID  | Produto         | Preco  |\n");
+    printf("|--------------------------------|\n");
+    printf("| %-3d | %-15.10s | %6.2f |\n", item_id, produto, preco); // %-3d, %-15.10s, %6.2f
+
+    item_id = 5;
+    char produto2[] = "Borracha";
+    preco = 0.5f;
+    printf("| %-3d | %-15.10s | %6.2f |\n", item_id, produto2, preco);
+    printf("|--------------------------------|\n");
+
+    return 0;
+}
+            </code></pre>
+        </section>
+
+        <section id="exemplos-codigos-entrada-saida">
+            <h2>Exemplos de Códigos (Atividades Resolvidas)</h2>
+            <div class="exercicio">
+                <h3>Atividade 1: Coletando Dados do Usuário</h3>
+                <p>Crie um programa que peça ao usuário seu nome (apenas o primeiro nome), idade e a cidade onde mora.
+                    Em seguida, exiba uma mensagem formatada com esses dados.</p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-es-ex1')">Mostrar/Ocultar Solução</button>
+                <div id="solucao-es-ex1" class="solucao">
+                    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    char nome[30];
+    int idade;
+    char cidade[50];
+
+    printf("Qual e o seu primeiro nome? ");
+    scanf("%s", nome); // Lê até o primeiro espaço
+
+    printf("Qual e a sua idade? ");
+    scanf("%d", &idade);
+
+    // Consumir o newline deixado pelo scanf("%d", ...)
+    // Uma forma é ler e descartar o caractere de newline
+    getchar(); // ou while(getchar() != '\n');
+
+    printf("Em qual cidade voce mora? ");
+    // Para ler nomes de cidade com espaços, fgets é melhor
+    // fgets(cidade, sizeof(cidade), stdin);
+    // Mas para simplificar com scanf, vamos supor cidade sem espaço por enquanto
+    // ou ler palavra por palavra. Se usar scanf("%s", cidade), só lê a primeira palavra.
+    // Para este exemplo simples com scanf, vamos assumir cidade sem espaço.
+    // Se quiser com espaço, e ainda usando scanf (menos seguro):
+    // scanf(" %[^\n]", cidade); // Lê até o newline, incluindo espaços. O espaço antes de %[^\n] consome newlines anteriores.
+
+    // Usando fgets para ler a cidade (mais seguro)
+    fgets(cidade, sizeof(cidade), stdin);
+    // fgets pode incluir o \n no final da string, vamos removê-lo se presente
+    // (Esta parte da remoção do \n é um pouco mais avançada para iniciantes,
+    //  mas boa prática com fgets)
+    int len = 0;
+    while(cidade[len] != '\0' && cidade[len] != '\n') len++;
+    if(cidade[len] == '\n') cidade[len] = '\0';
+
+
+    printf("\n--- Ola, %s! ---\n", nome);
+    printf("Voce tem %d anos e mora em %s.\n", idade, cidade);
+
+    return 0;
+}
+                    </code></pre>
+                    <p><strong>Nota sobre a solução:</strong> Ler strings com espaços usando <code>scanf</code> pode ser
+                        complicado. O código da solução usa `fgets` para `cidade`, que é uma prática melhor, e inclui
+                        uma forma de remover o `\n` que `fgets` pode adicionar. Para um exemplo mais simples apenas com
+                        `scanf`, poderia se usar `scanf(" %[^\n]", cidade);` mas isso tem suas próprias ressalvas.</p>
+                </div>
+            </div>
+
+            <div class="exercicio">
+                <h3>Atividade 2: Média de Três Notas</h3>
+                <p>Peça ao usuário para digitar três notas (<code>float</code>). Calcule a média e exiba o resultado
+                    formatado com duas casas decimais.</p>
+                <button class="botao-solucao" onclick="toggleSolucao('solucao-es-ex2')">Mostrar/Ocultar Solução</button>
+                <div id="solucao-es-ex2" class="solucao">
+                    <pre><code class="language-c">
+#include &lt;stdio.h&gt;
+
+int main() {
+    float nota1, nota2, nota3, media;
+
+    printf("Digite a primeira nota: ");
+    scanf("%f", &nota1);
+    printf("Digite a segunda nota: ");
+    scanf("%f", &nota2);
+    printf("Digite a terceira nota: ");
+    scanf("%f", &nota3);
+
+    media = (nota1 + nota2 + nota3) / 3.0f;
+
+    printf("A media das notas %.1f, %.1f e %.1f e: %.2f\n", nota1, nota2, nota3, media);
+
+    return 0;
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section id="lista-atividades-comunidade-entrada-saida">
+            <h2>Lista de Atividades (Para a Comunidade Resolver)</h2>
+            <div class="exercicio">
+                <h3>Desafio 1: Cadastro Simples de Produto</h3>
+                <p>Crie um programa que solicite ao usuário:
+                <ul>
+                    <li>Código do produto (inteiro)</li>
+                    <li>Nome do produto (string, pode ter espaços - use <code>fgets</code>)</li>
+                    <li>Preço do produto (float)</li>
+                    <li>Quantidade em estoque (inteiro)</li>
+                </ul>
+                Após ler todos os dados, exiba-os de forma organizada e formatada.
+                </p>
+            </div>
+            <div class="exercicio">
+                <h3>Desafio 2: Conversor de Moedas Simples</h3>
+                <p>Peça ao usuário um valor em Reais (BRL) e a cotação atual do Dólar (USD). Calcule e exiba o valor
+                    correspondente em Dólares, formatado com duas casas decimais.</p>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>DevAprender C &copy; 2025 - Desenvolvido por [Nome do Grupo]</p>
+    </footer>
+    <script src="/scripts/scripts.js"></script>
+</body>
+
+</html>
